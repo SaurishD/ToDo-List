@@ -1,0 +1,41 @@
+<div >
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1e90db;">
+      <h1 class="navbar-brand" href="#">Todo List</h1>
+    </nav>
+</div>
+<br>
+<div class="container d-flex justify-content-center"  >
+    <mat-card class="w-50 p-3 ">
+        <form class="example-form">
+            <h2>Login:</h2>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Username" name="username" [(ngModel)]="lUsername" required>
+            </mat-form-field>
+          
+            <mat-form-field class="example-full-width">
+              <input matInput type='Password' placeholder="Password" name="password" [(ngModel)]="lPassword" required>
+            </mat-form-field>
+            <button class="w-25" mat-raised-button type="submit"  (click) = "login()">Log In</button>
+        </form>
+        <div style="width: 100%;height: 1px;margin: 20px 0 20px 0;background-color: #d8d7d7;"></div>  
+        <form class="example-form">
+            <h5>New User?</h5>
+            <h2>Register:</h2>
+            
+            <mat-form-field class="example-full-width" >
+                <input matInput [(ngModel)]="rName" name="name" placeholder="Name"  required>
+            </mat-form-field>
+            <mat-form-field class="example-full-width">
+                <input matInput type="email" [(ngModel)]="rEmail" name="email" placeholder="Email" required>
+              </mat-form-field>
+            <mat-form-field class="example-full-width">
+              <input matInput placeholder="Username" name="username" [(ngModel)]="rUserName" required>
+            </mat-form-field>
+          
+            <mat-form-field class="example-full-width">
+              <input matInput type='Password' placeholder="Password" name="password" [(ngModel)]="rPassword" required>
+            </mat-form-field>
+            <button mat-raised-button class="w-25" type="submit" (click)="register()">Register</button>
+          </form>
+    </mat-card>
+</div>

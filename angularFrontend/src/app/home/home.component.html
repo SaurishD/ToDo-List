@@ -1,0 +1,58 @@
+<div >
+    <nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1e90db;">
+      <h1 class="navbar-brand" href="#">Todo List</h1>
+      <button type="submit" style="margin-top: 20px;position: absolute; right: 20px; top:-10px" class="btn btn-danger" (click)="logout()">Logout</button>
+    </nav>
+    
+    <svg xmlns="http://www.w3.org/2000/svg" (click)="formVisible = !formVisible" style="cursor:pointer; color: rgb(219, 5, 148);position: absolute;right: 10px;top: 50px;" width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+    </svg>
+  </div>
+  <div class="overlay" *ngIf="formVisible">
+    
+      <input type="text" [(ngModel)]="newTask" class="form-control" id="add_"  placeholder="Add Task" style="background-color: whitesmoke;width: 80%; margin-right: 5px;">
+    <div class="d-flex"  style="margin-top: 20px; width: 100%;">
+      <input matInput [matDatepicker] = "datepicker" class="form-control" #deadline   placeholder="Set deadline" style="background-color: whitesmoke;width: auto; margin: 0px 5px 5px 0;">
+      <mat-datepicker-toggle [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker></mat-datepicker>
+    </div>
+    <button type="submit" style="margin-top: 20px;" class="btn btn-primary" (click)="addTask(deadline.value)">+ Add</button>
+    <svg xmlns="http://www.w3.org/2000/svg"(click)="formVisible = false;" width="25" height="25" fill="currentColor" class="bi bi-x-circle-fill close_overlay" viewBox="0 0 16 16">
+      <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM5.354 4.646a.5.5 0 1 0-.708.708L7.293 8l-2.647 2.646a.5.5 0 0 0 .708.708L8 8.707l2.646 2.647a.5.5 0 0 0 .708-.708L8.707 8l2.647-2.646a.5.5 0 0 0-.708-.708L8 7.293 5.354 4.646z"/>
+    </svg>
+  </div>
+  
+  
+  
+  <div  class="container cards_container" style="display: grid; margin-top: 50px;" >
+    <div  *ngFor="let task of tasks" class="container card" style="padding: 0px;margin: 10px;box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);border-top: 5px solid;background-color: whitesmoke;width: auto; max-width: 300px;border-bottom-left-radius: 15px; border-bottom-right-radius: 15px;" [style.border-top-color] = "task.color">
+      <div class="" >
+        <div style="width: 100%; padding: 10px; color: #616060;" [style.background-color]="task.color+'10'">
+          <h2 class="form-check-label" for="flexCheckDefault"  [style.color]="''">
+          {{task.task}}
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16" style="float: right;cursor:pointer;" (click)="deleteTask(task,todo)">
+            <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+          </svg>
+          </h2>
+          <small>{{task.deadline}}</small>
+        </div>
+      
+        <div *ngFor="let todo of task.todo" class="" style="padding: 10px;margin: 5px; padding-left: 40px; color: #616060;"  >
+          <input class="form-check-input" type="checkbox" (click)="updateTodo(task,todo._id,$event)" [checked]=todo.status>
+          <label class="form-check-label" for="flexCheckDefault" [style.color]="decideColor(todo)">
+            {{todo.todo}}
+          </label>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16" style="float: right;cursor:pointer;" (click)="deleteTodo(task,todo._id)">
+            <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+            <path d="M4 8a.5.5 0 0 1 .5-.5h7a.5.5 0 0 1 0 1h-7A.5.5 0 0 1 4 8z"/>
+          </svg>
+          </div>
+        </div>
+        <div class="form-group container">
+          <div class="d-flex ">
+            <input type="text"  class="form-control" (keyup.enter)="addTodo(task,$event)" placeholder="Add Todo(Press Enter to add)" style="width: 100%; margin-top: 20px;" [style.background-color]="task.color+'10'">
+            
+      </div>
+    </div>
+  </div>
+  </div>

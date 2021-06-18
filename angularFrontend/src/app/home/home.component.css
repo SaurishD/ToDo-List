@@ -1,0 +1,37 @@
+.overlay{
+    position:absolute;
+     top: 10%;
+     left: 5%;
+      width:90%;
+      height:80%;
+      background:rgba(241, 237, 237, 0.9);
+      z-index:10;
+      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+      border-radius: 15px;
+      padding:80px 100px;
+      box-sizing:border-box;
+      
+    }
+    .overlay .close_overlay{
+        position: absolute;
+        top: -1px;
+        right: -1px;
+        color: rgb(37, 36, 36);
+        cursor: pointer;
+    }
+    
+    .cards_container{
+        grid-template-columns: auto auto auto;
+    }
+    
+    @media screen and (max-width: 975px) {
+        .cards_container{
+            grid-template-columns: auto auto;
+        }
+    }
+    
+    @media screen and (max-width: 725px) {
+        .cards_container{
+            grid-template-columns: auto;
+        }
+    }
