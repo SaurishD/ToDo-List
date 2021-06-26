@@ -1,5 +1,5 @@
 import jwt from 'jsonwebtoken';
-import { JWT_SECRET } from '../controllers/key';
+import { JWT_SECRET } from '../controllers/key.js';
 
 var userId;
 
